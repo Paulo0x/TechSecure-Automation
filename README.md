@@ -77,3 +77,4 @@ CLONE : Récupérer les sources depuis le dépôt sécurisé.
 PERMS : Activer les droits d'exécution via chmod +x *.sh.
 
 LOGS : Créer l'environnement de logs dans ~/scripts/logs/.
+<img width="567" height="499" alt="image" src="https://github.com/user-attachments/assets/3ce3d874-a247-4a3d-9385-f9d8efd96087" />
