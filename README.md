@@ -1,71 +1,79 @@
-🛠️ Boîte à Outils d'Administration Système - TechSecure
-Ce projet regroupe une suite de scripts Bash automatisant les tâches récurrentes d'administration pour un parc de serveurs Linux (Debian/Ubuntu).
+# ⚡ TECHSECURE : PROJECT_AUTOMATA ⚡
+> **SÉCURITÉ INFRASTRUCTURE** | **DIVISION AUTOMATISATION** | **v2.0.4**
+>
+> 🟢 **SYSTEM_STATUS**: ONLINE
+> 🔴 **ACCESS**: RESTRICTED_TO_SYSADMIN
+> 👤 **OPERATOR**: PAULO_ROOT
 
-📋 Sommaire
-Installation
+---
 
-Outils inclus
+## 🛰️ CONTEXTE OPÉRATIONNEL
+Suite au recrutement chez **TechSecure**, l'objectif était d'éradiquer les erreurs humaines sur une infrastructure de 20 serveurs Linux (Debian/Ubuntu). Cette suite logicielle automatise les déploiements, la surveillance et la protection des données.
 
-Usage
+```text
+          ________________________________________________
+         /                                                \
+        |    _________________________________________     |
+        |   |                                         |    |
+        |   |   T E C H S E C U R E _ S Y S T E M     |    |
+        |   |                                         |    |
+        |   |   > INITIALIZING MODULES...             |    |
+        |   |   > ALL SYSTEMS OPERATIONAL             |    |
+        |   |_________________________________________|    |
+        |                                                  |
+         \________________________________________________/
+                \__________________________________/
+             ___________________________________________
 
-Bonnes pratiques
+🛠️ MODULES_DE_CONTRÔLE
+	💾 01. PROTOCOLE_SAUVEGARDE (backup.sh)
+FONCTION : Extraction et archivage chiffré des répertoires critiques.
 
-🚀 Installation
-Clonage / Création des répertoires :
+MÉTHODE : Compression .tar.gz avec horodatage millimétré.
+
+GESTION_FLUX : Rotation intelligente (Purge automatique après 7 cycles).
+
+LOGS : Traçabilité totale dans /var/log/backup.log.
+
+	🖥️ 02. ANALYSEUR_SYSTÈME (monitor.sh)
+SENSORS : Monitoring CPU, RAM (Go/%), Disques et Uptime.
+
+HUD : Interface avec alertes colorées dynamiques (Seuils : 70% / 85%).
+
+SCAN : Identification immédiate des 5 processus les plus voraces.
+
+	👥 03. GESTION_IDENTITÉ (create-users.sh)
+INJECTION : Création massive d'utilisateurs via parsing CSV.
+
+SÉCURITÉ : Chiffrement des identités et mots de passe aléatoires.
+
+HIÉRARCHIE : Tri automatique par groupes départementaux (IT, RH, COM).
+
+	🧹 04. PROTOCOLE_NETTOYAGE (cleanup.sh)
+SÉCURITÉ : Mode SIMULATION par défaut pour éviter tout effacement accidentel.
+
+PURGE : Élimination des fichiers /tmp, vieux logs et résidus APT.
+
+OVERRIDE : Option --force requise pour l'exécution physique.
+
+	🩺 05. SCANNER_DE_SERVICES (check-services.sh)
+DIAGNOSTIC : Vérification en temps réel des services critiques (SSH, Cron, Web).
+
+LIVE_MODE : Option --watch pour une surveillance active toutes les 30s.
+
+	⚡ CONSOLE_CENTRALE (sysadmin-tools.sh)
+Le point d'entrée unique pour piloter l'infrastructure.
 
 Bash
-mkdir -p ~/scripts/logs
-cd ~/scripts
-Permissions : Tous les scripts doivent être rendus exécutables :
-
-Bash
-chmod +x *.sh
-Fichiers de configuration : Assurez-vous que les fichiers users.csv et services.conf sont présents dans le répertoire.
-
-🛠️ Outils inclus
-1. Sauvegarde Automatisée (backup.sh)
-Fonction : Compresse un répertoire cible dans /backup.
-
-Sécurité : Vérifie l'existence du dossier source et l'espace disque.
-
-Rotation : Ne conserve que les 7 dernières sauvegardes pour économiser l'espace.
-
-2. Moniteur de Ressources (monitor.sh)
-Surveillance : CPU, RAM et Disque.
-
-Alertes : Affichage coloré (Vert/Jaune/Rouge) selon les seuils d'utilisation.
-
-Processus : Affiche les 5 processus les plus gourmands en mémoire.
-
-3. Gestionnaire d'Utilisateurs (create-users.sh)
-Automatisation : Création massive à partir d'un fichier CSV.
-
-Sécurité : Génère des mots de passe aléatoires sécurisés pour chaque compte.
-
-Organisation : Crée automatiquement les groupes par département (IT, RH, etc.).
-
-4. Nettoyeur de Système (cleanup.sh)
-Mode Dry-run : Par défaut, simule les suppressions sans risque.
-
-Nettoyage : Vide /tmp, les vieux logs et le cache APT.
-
-Option Force : ./cleanup.sh --force pour appliquer réellement les changements.
-
-5. Vérificateur de Services (check-services.sh)
-État : Lit une liste de services et vérifie s'ils sont actifs.
-
-Rapport : Affiche un statut coloré pour une lecture rapide.
-
-🖥️ Usage
-L'utilisation est centralisée via le script principal qui propose un menu interactif :
-
-Bash
+# Lancement de l'interface de commande
 sudo ./sysadmin-tools.sh
-Note : L'utilisation de sudo est indispensable pour la création d'utilisateurs, la gestion des services et l'écriture des logs dans /var/log/.
+MENU : Interface interactive sécurisée.
 
-🛡️ Bonnes pratiques
-Logs : Toutes les opérations critiques sont enregistrées dans ~/scripts/logs/ ou /var/log/.
+ERROR_HANDLING : Gestion des arguments et validation des permissions.
 
-Sécurité : Aucun mot de passe n'est stocké en clair.
+	🔓 PROCÉDURE_DÉPLOIEMENT
+CLONE : Récupérer les sources depuis le dépôt sécurisé.
 
-Validation : Les scripts vérifient systématiquement les arguments avant exécution.
+PERMS : Activer les droits d'exécution via chmod +x *.sh.
+
+LOGS : Créer l'environnement de logs dans ~/scripts/logs/.
