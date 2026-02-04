@@ -4,8 +4,6 @@ Ce dépôt contient une suite d'outils d'automatisation développée pour **Tech
 
 > **STATUS**: [ OPERATIONAL ] <img width="330" height="201" alt="image" src="https://github.com/user-attachments/assets/6c64b67a-6c7c-46b3-80c4-599649cd1193" />
 
-
-![Capture de mon menu]
 ---
 
 ## 🚀 Fonctionnalités Principales
