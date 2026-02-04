@@ -1,80 +1,60 @@
-# ⚡ TECHSECURE : PROJECT_AUTOMATA ⚡
-> **SÉCURITÉ INFRASTRUCTURE** | **DIVISION AUTOMATISATION** | **v2.0.4**
->
-> 🟢 **SYSTEM_STATUS**: ONLINE
-> 🔴 **ACCESS**: RESTRICTED_TO_SYSADMIN
-> 👤 **OPERATOR**: PAULO_ROOT
+# 🛠️ TechSecure : Automatisation SysAdmin
+
+Ce dépôt contient une suite d'outils d'automatisation développée pour **TechSecure** afin de gérer une infrastructure de serveurs Linux (Debian/Ubuntu). L'objectif est de remplacer les tâches manuelles chronophages par des scripts Bash robustes, sécurisés et documentés.
+
+> **STATUS**: [ OPERATIONAL ] <img width="330" height="201" alt="image" src="https://github.com/user-attachments/assets/6c64b67a-6c7c-46b3-80c4-599649cd1193" />
+
+
+![Capture de mon menu]
+---
+
+## 🚀 Fonctionnalités Principales
+
+### 💾 01. Sauvegarde Automatisée (`backup.sh`)
+* **Archivage** : Crée des archives `.tar.gz` avec horodatage précis.
+* **Sécurité** : Vérification de l'espace disque disponible et de l'existence du répertoire source avant exécution.
+* **Rotation** : Conservation stricte des 7 dernières sauvegardes pour optimiser le stockage.
+* **Traçabilité** : Journalisation complète dans `/var/log/backup.log`.
+
+### 🖥️ 02. Moniteur de Ressources (`monitor.sh`)
+* **Surveillance** : Analyse en temps réel du CPU, de la RAM (Go/%), de l'espace disque et de l'Uptime.
+* **HUD Visuel** : Alertes colorées selon des seuils critiques (Vert < 70%, Jaune 70-85%, Rouge > 85%).
+* **Processus** : Liste les 5 processus consommant le plus de ressources système.
+
+### 👥 03. Gestionnaire d'Utilisateurs (`create-users.sh`)
+* **Batch Mode** : Création massive d'utilisateurs à partir d'un fichier CSV.
+* **Sécurité** : Génération de mots de passe aléatoires sécurisés pour chaque nouveau compte.
+* **Organisation** : Création automatique des groupes par département et des répertoires personnels.
+
+### 🧹 04. Nettoyeur de Système (`cleanup.sh`)
+* **Sécurité** : Mode "Dry-run" par défaut pour simuler les suppressions sans risque.
+* **Purge** : Nettoie `/tmp`, les logs compressés et le cache APT.
+* **Action** : Utilisation de l'option `--force` pour confirmer le nettoyage réel.
+
+### 🩺 05. Santé des Services (`check-services.sh`)
+* **Diagnostic** : Vérifie l'état (actif/inactif) des services listés dans `services.conf`.
+* **Monitoring** : Mode `--watch` disponible pour une surveillance continue toutes les 30 secondes.
 
 ---
 
-## 🛰️ CONTEXTE OPÉRATIONNEL
-Suite au recrutement chez **TechSecure**, l'objectif était d'éradiquer les erreurs humaines sur une infrastructure de 20 serveurs Linux (Debian/Ubuntu). Cette suite logicielle automatise les déploiements, la surveillance et la protection des données.
+## ⚡ Console Centrale (`sysadmin-tools.sh`)
 
-```text
-          ________________________________________________
-         /                                                \
-        |    _________________________________________     |
-        |   |                                         |    |
-        |   |   T E C H S E C U R E _ S Y S T E M     |    |
-        |   |                                         |    |
-        |   |   > INITIALIZING MODULES...             |    |
-        |   |   > ALL SYSTEMS OPERATIONAL             |    |
-        |   |_________________________________________|    |
-        |                                                  |
-         \________________________________________________/
-                \__________________________________/
-             ___________________________________________
+L'intégralité des modules est pilotable via une interface interactive unique. Elle gère la validation des arguments, les permissions et le retour au menu après chaque opération.
 
-🛠️ MODULES_DE_CONTRÔLE
-	💾 01. PROTOCOLE_SAUVEGARDE (backup.sh)
-FONCTION : Extraction et archivage chiffré des répertoires critiques.
+### Utilisation :
+```bash
+sudo ./sysadmin-tools.sh
+-----------------------------------------------------------------------------------------
 
-MÉTHODE : Compression .tar.gz avec horodatage millimétré.
-
-GESTION_FLUX : Rotation intelligente (Purge automatique après 7 cycles).
-
-LOGS : Traçabilité totale dans /var/log/backup.log.
-
-	🖥️ 02. ANALYSEUR_SYSTÈME (monitor.sh)
-SENSORS : Monitoring CPU, RAM (Go/%), Disques et Uptime.
-
-HUD : Interface avec alertes colorées dynamiques (Seuils : 70% / 85%).
-
-SCAN : Identification immédiate des 5 processus les plus voraces.
-
-	👥 03. GESTION_IDENTITÉ (create-users.sh)
-INJECTION : Création massive d'utilisateurs via parsing CSV.
-
-SÉCURITÉ : Chiffrement des identités et mots de passe aléatoires.
-
-HIÉRARCHIE : Tri automatique par groupes départementaux (IT, RH, COM).
-
-	🧹 04. PROTOCOLE_NETTOYAGE (cleanup.sh)
-SÉCURITÉ : Mode SIMULATION par défaut pour éviter tout effacement accidentel.
-
-PURGE : Élimination des fichiers /tmp, vieux logs et résidus APT.
-
-OVERRIDE : Option --force requise pour l'exécution physique.
-
-	🩺 05. SCANNER_DE_SERVICES (check-services.sh)
-DIAGNOSTIC : Vérification en temps réel des services critiques (SSH, Cron, Web).
-
-LIVE_MODE : Option --watch pour une surveillance active toutes les 30s.
-
-	⚡ CONSOLE_CENTRALE (sysadmin-tools.sh)
-Le point d'entrée unique pour piloter l'infrastructure.
+🔓 Installation et Configuration
+Permissions : Tous les scripts doivent être rendus exécutables :
 
 Bash
-# Lancement de l'interface de commande
-sudo ./sysadmin-tools.sh
-MENU : Interface interactive sécurisée.
+chmod +x *.sh
+Fichiers Source : Assurez-vous que les fichiers de configuration sont présents :
 
-ERROR_HANDLING : Gestion des arguments et validation des permissions.
+users.csv : Liste des collaborateurs à créer.
 
-	🔓 PROCÉDURE_DÉPLOIEMENT
-CLONE : Récupérer les sources depuis le dépôt sécurisé.
+services.conf : Liste des services à surveiller.
 
-PERMS : Activer les droits d'exécution via chmod +x *.sh.
-
-LOGS : Créer l'environnement de logs dans ~/scripts/logs/.
-<img width="567" height="499" alt="image" src="https://github.com/user-attachments/assets/3ce3d874-a247-4a3d-9385-f9d8efd96087" />
+Logs : Les rapports sont archivés dans /var/log/ pour une consultation ultérieure.
